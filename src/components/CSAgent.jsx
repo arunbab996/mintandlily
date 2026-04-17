@@ -88,72 +88,76 @@ CHARMS ($19–$55) — Initials A–Z, all 12 birthstones, birth flowers, fun ch
 ━━━ ESCALATION ━━━
 For complex issues always offer: "Reach our team at support@mintandlily.com — they reply within 24 hours and can look up your order directly."`;
 
-const QUICK_PROMPTS = [
-  "Where's my order?",
-  "Start a return",
-  "Wrong engraving received",
-  "Item arrived damaged",
-  "Track my package",
-];
-
-const TOPICS = [
+// ── Post-purchase action cards ────────────────────────────────────────────────
+const ACTIONS = [
   {
-    label: 'My Order',
-    desc: 'Tracking, status, changes',
+    label: 'Track my order',
+    sub: 'Get live shipping status',
+    prompt: 'Where is my order and how do I track it?',
     icon: (
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+        <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
       </svg>
     ),
-    questions: ["Where is my order?", "How do I track my package?", "Can I cancel or change my order?"],
   },
   {
-    label: 'Returns & Exchanges',
-    desc: 'Refunds, swaps, damaged items',
+    label: 'Return or exchange',
+    sub: 'Start a refund or swap',
+    prompt: 'I want to start a return or exchange.',
     icon: (
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
         <polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-4.95"/>
       </svg>
     ),
-    questions: ["How do I return an item?", "Can I exchange for a different size?", "My item arrived damaged — what do I do?"],
   },
   {
-    label: 'Personalization',
-    desc: 'Engravings, birthstones, names',
+    label: 'Wrong engraving',
+    sub: 'Name or date was incorrect',
+    prompt: 'I received the wrong engraving on my order.',
     icon: (
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
         <path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
       </svg>
     ),
-    questions: ["How do birthstone options work?", "What name length can I engrave?", "Can I order multiple names on one piece?"],
   },
   {
-    label: 'Products',
-    desc: 'Materials, sizing, collections',
+    label: 'Item arrived damaged',
+    sub: 'Broken or defective on arrival',
+    prompt: 'My item arrived damaged. What do I do?',
     icon: (
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+        <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+        <line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>
       </svg>
     ),
-    questions: ["What materials are your pieces made from?", "Tell me about the Paperclip series", "What are your bestsellers?"],
   },
   {
-    label: 'Shipping',
-    desc: 'Timelines, international, costs',
+    label: 'Shipping question',
+    sub: 'Timelines, international, costs',
+    prompt: 'I have a question about shipping.',
     icon: (
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>
+        <rect x="1" y="3" width="15" height="13"/>
+        <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/>
+        <circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>
       </svg>
     ),
-    questions: ["Do you ship internationally?", "How long does delivery take?", "Is there free shipping?"],
+  },
+  {
+    label: 'Product question',
+    sub: 'Materials, sizing, care',
+    prompt: 'I have a question about one of your products.',
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="12" r="10"/>
+        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+        <line x1="12" y1="17" x2="12.01" y2="17"/>
+      </svg>
+    ),
   },
 ];
 
-const HERO_IMAGES = [
-  'https://mintandlily.com/cdn/shop/files/gold_beaded_birthstone_bracelet_model_home.jpg',
-  'https://mintandlily.com/cdn/shop/files/homepage_Dainty_baguette_bs_bracelet_1.jpg',
-  'https://mintandlily.com/cdn/shop/files/cross_charm_bs_bracelet_home_page_1.jpg',
-];
+const HERO_IMAGE = 'https://mintandlily.com/cdn/shop/files/gold_beaded_birthstone_bracelet_model_home.jpg';
 
 function formatTime(date) {
   return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
@@ -260,17 +264,28 @@ function EscalationBanner() {
   );
 }
 
-// ── Welcome screen ────────────────────────────────────────────────────────────
+const QUICK_PROMPTS = [
+  "Where's my order?",
+  "Start a return",
+  "Wrong engraving received",
+  "Item arrived damaged",
+  "Track my package",
+];
+
+// ── Welcome screen ─────────────────────────────────────────────────────────────
 function WelcomeScreen({ onSend }) {
   const [query, setQuery] = useState('');
-  const [activeTopicIdx, setActiveTopicIdx] = useState(null);
-  const inputRef = useRef(null);
+  const textareaRef = useRef(null);
 
-  useEffect(() => { inputRef.current?.focus(); }, []);
+  useEffect(() => { textareaRef.current?.focus(); }, []);
 
   const submit = (text) => {
     const t = (text ?? query).trim();
     if (t) onSend(t);
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); submit(); }
   };
 
   return (
@@ -278,80 +293,86 @@ function WelcomeScreen({ onSend }) {
 
       {/* ── Hero ── */}
       <div className="relative flex-shrink-0" style={{ minHeight: 300 }}>
-        {/* Layered images for depth */}
         <div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${HERO_IMAGES[0]})` }}
+          style={{ backgroundImage: `url(${HERO_IMAGE})` }}
         />
-        {/* Rich gradient — warm at top, deeper at bottom */}
         <div
           className="absolute inset-0"
-          style={{
-            background: 'linear-gradient(160deg, rgba(10,8,6,0.30) 0%, rgba(10,8,6,0.55) 50%, rgba(10,8,6,0.72) 100%)',
-          }}
+          style={{ background: 'linear-gradient(160deg, rgba(10,8,6,0.28) 0%, rgba(10,8,6,0.52) 45%, rgba(10,8,6,0.78) 100%)' }}
         />
-
-        <div className="relative z-10 flex flex-col items-center text-center px-6 pt-10 pb-8">
-          {/* Logo */}
-          <LogoFull className="h-6 w-auto mb-7 invert brightness-200 opacity-95" />
-
-          {/* Heading */}
+        <div className="relative z-10 flex flex-col items-center text-center px-6 pt-9 pb-6">
+          <LogoFull className="h-5 w-auto mb-6 invert brightness-200 opacity-90" />
           <h1
             className="font-heading text-white leading-tight mb-2"
-            style={{ fontSize: '2rem', fontWeight: 400, letterSpacing: '-0.01em' }}
+            style={{ fontSize: '1.85rem', fontWeight: 400, letterSpacing: '-0.01em' }}
           >
             Hi, how can I help you?
           </h1>
-          <p className="text-sm font-body text-white/65 mb-7 tracking-wide">
-            Ask about your order, returns, or any of our jewelry
+          <p className="text-sm font-body mb-6" style={{ color: 'rgba(255,255,255,0.6)' }}>
+            Post-purchase support for all Mint &amp; Lily orders
           </p>
 
-          {/* Search box */}
+          {/* ── Chat composer ── */}
           <div className="w-full max-w-md">
             <div
-              className="flex items-center rounded-2xl overflow-hidden border"
-              style={{ background: 'rgba(255,255,255,0.97)', borderColor: 'rgba(255,255,255,0.6)', boxShadow: '0 8px 32px rgba(0,0,0,0.18)' }}
+              className="rounded-2xl overflow-hidden"
+              style={{ background: 'rgba(255,255,255,0.97)', boxShadow: '0 8px 32px rgba(0,0,0,0.22)' }}
             >
-              <div className="pl-4 flex-shrink-0 text-muted/50">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-                  <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
-                </svg>
+              {/* Agent row */}
+              <div className="flex items-center gap-2.5 px-4 pt-3.5 pb-2 border-b border-black/[0.06]">
+                <div className="w-6 h-6 rounded-full bg-sage-light flex items-center justify-center flex-shrink-0">
+                  <LogoMark style={{ width: '11px', height: '11px' }} />
+                </div>
+                <span className="text-xs font-body font-medium text-ink/70">Mint &amp; Lily Support</span>
+                <span className="ml-auto flex items-center gap-1 text-[10px] font-body text-sage-dark">
+                  <span className="w-1.5 h-1.5 rounded-full bg-sage inline-block" />
+                  Online
+                </span>
               </div>
-              <input
-                ref={inputRef}
-                type="text"
-                value={query}
-                onChange={e => setQuery(e.target.value)}
-                onKeyDown={e => e.key === 'Enter' && submit()}
-                placeholder="Search or ask a question…"
-                className="flex-1 px-3 py-4 text-sm font-body text-ink placeholder:text-muted/45 focus:outline-none bg-transparent"
-              />
-              {query && (
+
+              {/* Textarea */}
+              <div className="px-4 pt-3 pb-2">
+                <textarea
+                  ref={textareaRef}
+                  value={query}
+                  onChange={e => setQuery(e.target.value)}
+                  onKeyDown={handleKeyDown}
+                  placeholder="Type your question or issue…"
+                  rows={2}
+                  className="w-full resize-none bg-transparent text-sm font-body text-ink placeholder:text-muted/40 focus:outline-none leading-relaxed"
+                  style={{ maxHeight: '80px', overflowY: 'auto' }}
+                  onInput={e => {
+                    e.target.style.height = 'auto';
+                    e.target.style.height = Math.min(e.target.scrollHeight, 80) + 'px';
+                  }}
+                />
+              </div>
+
+              {/* Footer row */}
+              <div className="px-3 pb-3 flex items-center justify-between">
+                <span className="text-[10px] font-body text-muted/35 pl-1">Enter to send</span>
                 <button
                   onClick={() => submit()}
-                  className="mr-2 w-9 h-9 rounded-xl bg-ink flex items-center justify-center flex-shrink-0 hover:bg-ink/80 transition-colors"
+                  disabled={!query.trim()}
+                  className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-ink text-white text-xs font-body font-medium disabled:opacity-30 disabled:cursor-not-allowed hover:bg-ink/80 transition-all"
                 >
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.2" strokeLinecap="round">
+                  Send
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
                     <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
                   </svg>
                 </button>
-              )}
+              </div>
             </div>
 
-            {/* Quick prompt chips */}
-            <div className="flex flex-wrap justify-center gap-2 mt-4">
+            {/* Quick-prompt chips */}
+            <div className="flex flex-wrap justify-center gap-1.5 mt-3.5">
               {QUICK_PROMPTS.map((p) => (
                 <button
                   key={p}
                   onClick={() => submit(p)}
-                  className="text-xs font-body px-3.5 py-2 rounded-full text-white transition-all"
-                  style={{
-                    background: 'rgba(255,255,255,0.15)',
-                    border: '1px solid rgba(255,255,255,0.35)',
-                    backdropFilter: 'blur(8px)',
-                  }}
-                  onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.25)'; }}
-                  onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.15)'; }}
+                  className="text-xs font-body px-3 py-1.5 rounded-full text-white/90 transition-all hover:text-white"
+                  style={{ background: 'rgba(255,255,255,0.13)', border: '1px solid rgba(255,255,255,0.28)', backdropFilter: 'blur(8px)' }}
                 >
                   {p}
                 </button>
@@ -361,73 +382,36 @@ function WelcomeScreen({ onSend }) {
         </div>
       </div>
 
-      {/* ── Topics ── */}
-      <div className="px-5 pt-6 pb-3">
-        <p className="text-[10px] font-body font-semibold text-muted/50 uppercase tracking-[0.12em] mb-4 px-1">
-          Browse by topic
+      {/* ── Action cards ── */}
+      <div className="px-4 pt-5 pb-6">
+        <p className="text-[10px] font-body font-semibold uppercase tracking-[0.12em] mb-3 px-1" style={{ color: 'rgba(89,89,89,0.5)' }}>
+          Common requests
         </p>
-        <div className="flex flex-col gap-2">
-          {TOPICS.map((topic, i) => (
-            <div key={topic.label}>
-              <button
-                onClick={() => setActiveTopicIdx(activeTopicIdx === i ? null : i)}
-                className={`w-full flex items-center gap-4 px-4 py-3.5 rounded-2xl border text-left transition-all ${
-                  activeTopicIdx === i
-                    ? 'bg-ink border-ink text-white shadow-md'
-                    : 'bg-white border-border-col text-ink hover:border-ink/20 hover:shadow-sm'
-                }`}
-              >
-                <span className={`flex-shrink-0 ${activeTopicIdx === i ? 'text-sage-light' : 'text-sage'}`}>
-                  {topic.icon}
-                </span>
-                <div className="flex-1 min-w-0">
-                  <p className={`text-sm font-body font-semibold leading-tight ${activeTopicIdx === i ? 'text-white' : 'text-ink'}`}>
-                    {topic.label}
-                  </p>
-                  <p className={`text-xs font-body mt-0.5 ${activeTopicIdx === i ? 'text-white/55' : 'text-muted/60'}`}>
-                    {topic.desc}
-                  </p>
-                </div>
-                <svg
-                  width="14" height="14" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" strokeWidth="2"
-                  className={`flex-shrink-0 transition-transform duration-200 ${
-                    activeTopicIdx === i ? 'rotate-180 text-white/50' : 'text-muted/30'
-                  }`}
-                >
-                  <polyline points="6 9 12 15 18 9"/>
-                </svg>
-              </button>
-
-              {activeTopicIdx === i && (
-                <div className="mt-1.5 ml-3 flex flex-col gap-1.5">
-                  {topic.questions.map((q) => (
-                    <button
-                      key={q}
-                      onClick={() => submit(q)}
-                      className="group flex items-center justify-between text-sm font-body text-left px-4 py-3.5 bg-white border border-border-col rounded-xl hover:border-sage/40 hover:bg-sage-light/20 hover:shadow-sm transition-all text-ink"
-                    >
-                      <span>{q}</span>
-                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" className="text-muted/30 group-hover:text-sage transition-colors flex-shrink-0 ml-3">
-                        <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
-                      </svg>
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
+        <div className="grid grid-cols-2 gap-2.5">
+          {ACTIONS.map((action) => (
+            <button
+              key={action.label}
+              onClick={() => submit(action.prompt)}
+              className="group flex flex-col items-start gap-3 bg-white border border-border-col rounded-2xl px-4 py-4 text-left hover:border-sage/40 hover:shadow-md transition-all"
+            >
+              <span className="text-sage group-hover:text-sage-dark transition-colors">
+                {action.icon}
+              </span>
+              <div>
+                <p className="text-sm font-body font-semibold text-ink leading-tight">{action.label}</p>
+                <p className="text-xs font-body text-muted/60 mt-0.5 leading-snug">{action.sub}</p>
+              </div>
+            </button>
           ))}
         </div>
-      </div>
 
-      {/* Footer */}
-      <div className="px-5 py-5 mt-auto">
-        <div className="flex items-center justify-center gap-2 text-xs font-body text-muted/50">
+        {/* Email fallback */}
+        <div className="mt-5 flex items-center justify-center gap-2 text-xs font-body" style={{ color: 'rgba(89,89,89,0.5)' }}>
           <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
             <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
             <polyline points="22,6 12,13 2,6"/>
           </svg>
-          <span>Need direct help?</span>
+          <span>Prefer email?</span>
           <a href="mailto:support@mintandlily.com" className="text-sage-dark font-medium underline underline-offset-2">
             support@mintandlily.com
           </a>
