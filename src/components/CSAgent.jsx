@@ -170,15 +170,15 @@ function formatTime(date) {
 
 function TypingIndicator() {
   return (
-    <div className="flex items-end gap-3 mb-5">
-      <div className="w-8 h-8 rounded-full bg-sage-light flex items-center justify-center flex-shrink-0 shadow-sm">
-        <LogoMark style={{ width: '15px', height: '15px' }} />
+    <div className="flex items-start gap-3 mb-4">
+      <div className="w-7 h-7 rounded-full bg-sage-light flex items-center justify-center flex-shrink-0 mt-0.5 shadow-sm overflow-hidden">
+        <LogoMark style={{ width: '12px', height: '17px' }} />
       </div>
-      <div className="bg-white border border-border-col rounded-2xl rounded-bl-none px-5 py-3.5 shadow-sm">
-        <div className="flex gap-1.5 items-center h-4">
-          <span className="typing-dot w-1.5 h-1.5 rounded-full bg-sage/70 inline-block" />
-          <span className="typing-dot w-1.5 h-1.5 rounded-full bg-sage/70 inline-block" />
-          <span className="typing-dot w-1.5 h-1.5 rounded-full bg-sage/70 inline-block" />
+      <div className="bg-white rounded-2xl rounded-tl-sm px-4 py-3 shadow-sm border border-border-col">
+        <div className="flex gap-1 items-center h-4">
+          <span className="typing-dot w-1.5 h-1.5 rounded-full bg-sage/60 inline-block" />
+          <span className="typing-dot w-1.5 h-1.5 rounded-full bg-sage/60 inline-block" />
+          <span className="typing-dot w-1.5 h-1.5 rounded-full bg-sage/60 inline-block" />
         </div>
       </div>
     </div>
@@ -187,26 +187,26 @@ function TypingIndicator() {
 
 function AgentMessage({ content, timestamp, feedback, onFeedback, streaming }) {
   return (
-    <div className="flex items-end gap-3 mb-5 group">
-      <div className="w-8 h-8 rounded-full bg-sage-light flex items-center justify-center flex-shrink-0 shadow-sm">
-        <LogoMark style={{ width: '15px', height: '15px' }} />
+    <div className="flex items-start gap-3 mb-5 group">
+      <div className="w-7 h-7 rounded-full bg-sage-light flex items-center justify-center flex-shrink-0 mt-0.5 shadow-sm overflow-hidden">
+        <LogoMark style={{ width: '12px', height: '17px' }} />
       </div>
-      <div className="flex flex-col gap-1.5 max-w-[75%]">
+      <div className="flex flex-col gap-1.5" style={{ maxWidth: 'min(75%, 520px)' }}>
         <div
-          className="bg-white border border-border-col rounded-2xl rounded-bl-none px-5 py-4 shadow-sm text-sm font-body text-ink leading-relaxed"
+          className="bg-white rounded-2xl rounded-tl-sm px-4 py-3.5 shadow-sm border border-border-col text-sm font-body text-ink leading-relaxed"
           style={{ whiteSpace: 'pre-wrap' }}
         >
           {content}
           {streaming && <span className="inline-block w-0.5 h-3.5 bg-sage ml-0.5 animate-pulse align-middle" />}
         </div>
-        <div className="flex items-center gap-3 px-1">
-          <span className="text-[10px] font-body text-muted/40">{formatTime(timestamp)}</span>
+        <div className="flex items-center gap-2.5 px-0.5">
+          <span className="text-[10px] font-body" style={{ color: 'rgba(89,89,89,0.38)' }}>{formatTime(timestamp)}</span>
           {!streaming && (
-            <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+            <div className="flex items-center gap-0.5 opacity-0 group-hover:opacity-100 transition-opacity">
               <button
                 onClick={() => onFeedback('up')}
                 title="Helpful"
-                className={`p-1 rounded transition-colors ${feedback === 'up' ? 'text-sage' : 'text-muted/25 hover:text-sage'}`}
+                className={`p-1 rounded-md transition-colors ${feedback === 'up' ? 'text-sage' : 'text-muted/20 hover:text-sage'}`}
               >
                 <svg width="11" height="11" viewBox="0 0 24 24" fill={feedback === 'up' ? 'currentColor' : 'none'} stroke="currentColor" strokeWidth="2" strokeLinecap="round">
                   <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/>
@@ -216,7 +216,7 @@ function AgentMessage({ content, timestamp, feedback, onFeedback, streaming }) {
               <button
                 onClick={() => onFeedback('down')}
                 title="Not helpful"
-                className={`p-1 rounded transition-colors ${feedback === 'down' ? 'text-red-400' : 'text-muted/25 hover:text-red-400'}`}
+                className={`p-1 rounded-md transition-colors ${feedback === 'down' ? 'text-red-400' : 'text-muted/20 hover:text-red-400'}`}
               >
                 <svg width="11" height="11" viewBox="0 0 24 24" fill={feedback === 'down' ? 'currentColor' : 'none'} stroke="currentColor" strokeWidth="2" strokeLinecap="round">
                   <path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3H10z"/>
@@ -234,11 +234,14 @@ function AgentMessage({ content, timestamp, feedback, onFeedback, streaming }) {
 function UserMessage({ content, timestamp }) {
   return (
     <div className="flex items-end justify-end gap-3 mb-5">
-      <div className="flex flex-col items-end gap-1.5 max-w-[75%]">
-        <div className="bg-ink text-white rounded-2xl rounded-br-none px-5 py-4 shadow-sm text-sm font-body leading-relaxed" style={{ whiteSpace: 'pre-wrap' }}>
+      <div className="flex flex-col items-end gap-1.5" style={{ maxWidth: 'min(75%, 520px)' }}>
+        <div
+          className="text-white rounded-2xl rounded-tr-sm px-4 py-3.5 text-sm font-body leading-relaxed shadow-sm"
+          style={{ background: '#020303', whiteSpace: 'pre-wrap' }}
+        >
           {content}
         </div>
-        <span className="text-[10px] font-body text-muted/40 px-1">{formatTime(timestamp)}</span>
+        <span className="text-[10px] font-body px-0.5" style={{ color: 'rgba(89,89,89,0.38)' }}>{formatTime(timestamp)}</span>
       </div>
     </div>
   );
@@ -246,18 +249,18 @@ function UserMessage({ content, timestamp }) {
 
 function EscalationBanner() {
   return (
-    <div className="mb-5 rounded-2xl overflow-hidden border border-sage/20">
-      <div className="bg-sage-light px-5 py-4 flex items-start gap-3">
+    <div className="mb-5 mx-1 rounded-2xl overflow-hidden" style={{ background: '#edf6f0', border: '1px solid rgba(105,171,128,0.2)' }}>
+      <div className="px-4 py-3.5 flex items-start gap-3">
         <div className="w-7 h-7 rounded-full bg-white flex items-center justify-center flex-shrink-0 mt-0.5 shadow-sm">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#77A484" strokeWidth="2.5" strokeLinecap="round">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#6aab80" strokeWidth="2.5" strokeLinecap="round">
             <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
             <polyline points="22,6 12,13 2,6"/>
           </svg>
         </div>
         <div>
-          <p className="text-sm font-body font-semibold text-ink">Still need help?</p>
-          <p className="text-xs font-body text-muted mt-0.5 leading-relaxed">
-            Email us at{' '}
+          <p className="text-sm font-body font-semibold text-ink leading-tight">Still need help?</p>
+          <p className="text-xs font-body text-muted/70 mt-0.5 leading-relaxed">
+            Email{' '}
             <a href="mailto:support@mintandlily.com" className="text-sage-dark font-medium underline underline-offset-2">
               support@mintandlily.com
             </a>
@@ -490,16 +493,16 @@ export default function CSAgent() {
 
   if (messages.length === 0) {
     return (
-      <div className="h-full">
+      <div className="flex-1 min-h-0 overflow-y-auto">
         <WelcomeScreen onSend={sendMessage} />
       </div>
     );
   }
 
   return (
-    <div className="flex flex-col h-full bg-cream">
+    <div className="flex flex-col flex-1 min-h-0" style={{ background: '#F7F5F1' }}>
       {/* Chat header */}
-      <div className="bg-white border-b border-border-col px-5 py-3 flex items-center justify-between flex-shrink-0">
+      <div className="bg-white border-b border-border-col px-5 py-3 flex items-center justify-between flex-shrink-0" style={{ boxShadow: '0 1px 0 #E8E6E1' }}>
         <div className="flex items-center gap-3">
           <div className="relative">
             <div className="w-9 h-9 rounded-full bg-sage-light flex items-center justify-center shadow-sm">
@@ -509,12 +512,12 @@ export default function CSAgent() {
           </div>
           <div>
             <p className="text-sm font-body font-semibold text-ink leading-tight">Customer Experience</p>
-            <p className="text-[11px] font-body text-muted/55">Mint & Lily · Online now</p>
+            <p className="text-[11px] font-body" style={{ color: 'rgba(89,89,89,0.55)' }}>Mint &amp; Lily · Online now</p>
           </div>
         </div>
         <button
           onClick={() => { setMessages([]); setShowEscalation(false); }}
-          className="text-xs font-body text-muted/50 hover:text-ink transition-colors flex items-center gap-1.5 px-3 py-1.5 rounded-xl hover:bg-cream border border-transparent hover:border-border-col"
+          className="text-xs font-body text-muted/50 hover:text-ink transition-colors flex items-center gap-1.5 px-3 py-1.5 rounded-xl hover:bg-cream"
         >
           <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
             <polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-4.95"/>
@@ -523,34 +526,43 @@ export default function CSAgent() {
         </button>
       </div>
 
-      {/* Messages */}
-      <div className="flex-1 overflow-y-auto px-5 py-7 min-h-0">
-        {messages.map((msg) =>
-          msg.role === 'user'
-            ? <UserMessage key={msg.id ?? msg.timestamp?.getTime()} content={msg.content} timestamp={msg.timestamp} />
-            : <AgentMessage
-                key={msg.id ?? msg.timestamp?.getTime()}
-                content={msg.content}
-                timestamp={msg.timestamp}
-                streaming={msg.streaming}
-                feedback={feedback[msg.id]}
-                onFeedback={(val) => setFeedback(p => ({ ...p, [msg.id]: val }))}
-              />
-        )}
-        {isStreaming && messages[messages.length - 1]?.content === '' && <TypingIndicator />}
-        {showEscalation && !isStreaming && <EscalationBanner />}
-        <div ref={bottomRef} />
+      {/* Messages — mt-auto pushes messages to bottom when chat is short */}
+      <div className="flex-1 overflow-y-auto min-h-0 flex flex-col">
+        <div className="px-5 pt-4 pb-2 mt-auto">
+          {messages.map((msg) =>
+            msg.role === 'user'
+              ? <UserMessage key={msg.id ?? msg.timestamp?.getTime()} content={msg.content} timestamp={msg.timestamp} />
+              : <AgentMessage
+                  key={msg.id ?? msg.timestamp?.getTime()}
+                  content={msg.content}
+                  timestamp={msg.timestamp}
+                  streaming={msg.streaming}
+                  feedback={feedback[msg.id]}
+                  onFeedback={(val) => setFeedback(p => ({ ...p, [msg.id]: val }))}
+                />
+          )}
+          {isStreaming && messages[messages.length - 1]?.content === '' && <TypingIndicator />}
+          {showEscalation && !isStreaming && <EscalationBanner />}
+          <div ref={bottomRef} />
+        </div>
       </div>
 
-      {/* Input */}
-      <div className="border-t border-border-col bg-white px-5 py-4">
-        <div className="flex items-end gap-3 bg-cream border border-border-col rounded-2xl px-4 py-3 transition-all focus-within:border-sage/40 focus-within:shadow-sm">
+      {/* Input — sticky bottom, elevated */}
+      <div
+        className="flex-shrink-0 bg-white px-4 pt-3 pb-4"
+        style={{ boxShadow: '0 -1px 0 #E8E6E1, 0 -4px 16px rgba(0,0,0,0.04)' }}
+      >
+        <div
+          className="flex items-end gap-2.5 rounded-2xl px-4 py-3 transition-all"
+          style={{ background: '#F3F1ED', outline: '1.5px solid transparent', outlineOffset: '0' }}
+          onFocus={() => {}}
+        >
           <textarea
             ref={textareaRef}
             value={input}
             onChange={e => setInput(e.target.value)}
             onKeyDown={handleKeyDown}
-            placeholder="Message Mint & Lily…"
+            placeholder="Message Mint &amp; Lily…"
             rows={1}
             className="flex-1 resize-none bg-transparent text-sm font-body text-ink placeholder:text-muted/40 focus:outline-none leading-relaxed"
             style={{ maxHeight: '96px', overflowY: 'auto' }}
@@ -562,14 +574,20 @@ export default function CSAgent() {
           <button
             onClick={() => sendMessage()}
             disabled={!input.trim() || isStreaming}
-            className="flex-shrink-0 w-9 h-9 rounded-xl bg-ink hover:bg-ink/80 disabled:bg-border-col disabled:cursor-not-allowed transition-colors flex items-center justify-center"
+            className="flex-shrink-0 w-8 h-8 rounded-xl flex items-center justify-center transition-all"
+            style={{
+              background: input.trim() && !isStreaming ? '#020303' : '#D9D7D2',
+              cursor: input.trim() && !isStreaming ? 'pointer' : 'not-allowed',
+            }}
           >
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.2" strokeLinecap="round">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round">
               <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
             </svg>
           </button>
         </div>
-        <p className="text-center text-xs font-body text-muted/35 mt-2">Enter to send · Shift+Enter for new line</p>
+        <p className="text-center text-[10px] font-body mt-2" style={{ color: 'rgba(89,89,89,0.3)' }}>
+          Enter to send · Shift+Enter for new line
+        </p>
       </div>
     </div>
   );

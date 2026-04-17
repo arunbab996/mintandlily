@@ -70,7 +70,7 @@ export default function App() {
         className="flex-1 max-w-5xl w-full mx-auto flex flex-col"
         style={{ height: 'calc(100vh - 64px)' }}
       >
-        <div className="flex-1 min-h-0">
+        <div className="flex-1 min-h-0 flex flex-col">
           {activeTab === 'cs' ? <CSAgent /> : <ReviewIntelligence />}
         </div>
       </main>
